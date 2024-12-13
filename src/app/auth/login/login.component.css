@@ -1,0 +1,16 @@
+mat-card {
+  margin-top: 2rem;
+  padding: 1rem;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-card-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}

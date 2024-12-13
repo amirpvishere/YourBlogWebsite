@@ -1,0 +1,32 @@
+<div class="card-container" *ngIf="isLoggedIn; else notLoggedIn">
+    <mat-card *ngFor="let post of posts">
+        <mat-card-header>
+            <mat-card-title>{{ post.title }}</mat-card-title>
+            <mat-card-subtitle>
+                <p>Created At: {{ post.createdAt }}</p>
+                <p>Last Updated: {{ post.updatedAt }}</p>
+              </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <p>{{ post.description | slice: 0:20 }}{{ post.description.length > 20 ? '...' : '' }}</p>
+        </mat-card-content>
+        <mat-card-actions class="button-container">
+            <button mat-button (click)="showMore(post._id)">Show Post</button>
+
+        </mat-card-actions>
+    </mat-card>
+
+    <div *ngIf="errorMsg" class="error-message">
+        {{ errorMsg }}
+    </div>
+</div>
+
+    <ng-template #notLoggedIn>
+        <div class="not-logged-in">
+          <h1>Access Denied</h1>
+          <p>You need to log in to view this page.</p>
+          <button mat-raised-button color="primary" (click)="navigateToLogin()">Go to Login</button>
+        </div>
+      </ng-template>
+
+

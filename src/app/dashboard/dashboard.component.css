@@ -1,0 +1,138 @@
+/* Dashboard Container */
+.dashboard-container {
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.dashboard-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Title */
+.dashboard-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Search and Add Post Section */
+.search-container,
+.add-post-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-container input,
+.add-post-container input {
+  flex: 1;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.add-post-container button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-post-container button:hover {
+  background-color: #0056b3;
+}
+
+/* Post List */
+.post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Post Item */
+.post-item {
+  padding: 15px;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.post-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.post-author {
+  font-size: 0.9rem;
+  color: gray;
+  margin: 0;
+}
+
+.post-meta {
+  font-size: 0.85rem;
+  color: gray;
+}
+
+.post-content {
+  margin-top: 10px;
+  font-size: 1rem;
+}
+
+.tags {
+  font-style: italic;
+  margin-top: 10px;
+}
+
+/* Actions */
+.post-actions {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.edit-button,
+.delete-button,
+.show-more-button {
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.delete-button {
+  margin-left: 20px;
+}
+
+.show-more-button {
+  margin-left: auto;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  gap: 10px;
+}
+
+.pagination-controls button {
+  min-width: 100px;
+}

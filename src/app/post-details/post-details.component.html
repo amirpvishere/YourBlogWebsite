@@ -1,0 +1,74 @@
+<mat-card class="post-details-card">
+    <mat-card-header>
+      <mat-card-title>{{ post.title }}</mat-card-title>
+      <mat-card-subtitle>
+          <p>Created At: {{ post.createdAt }}</p>
+          <p>Last Update: {{ post.updatedAt }}</p>
+      </mat-card-subtitle>
+    </mat-card-header>
+
+
+    <mat-card-content>
+        <p><strong>Description: </strong>{{ post.description }}</p>
+        <p><strong>Author: </strong>{{ post.ownerEmail }}</p>
+        <p><strong>Tags: </strong>{{ post.tags }}</p>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        [color]="hasLiked ? 'warn' : 'primary'"
+        (click)="toggleLike()"
+        class="like-button"
+      >
+        {{ hasLiked ? 'Dislike' : 'Like' }}
+        <span *ngIf="likeCount > 0">({{ likeCount }})</span>
+      </button>
+        <button mat-raised-button (click)="navigateToDashboard()">Back to Dashboard</button>
+
+    </mat-card-actions>
+
+      <!-- Like/Dislike Button -->
+
+
+    <h2>Comments</h2>
+    <div *ngIf="post?.comments?.length > 0; else noComments">
+      <ul>
+        <ng-container *ngFor="let comment of getTopLevelComments()">
+          <li>
+            <p><strong>{{ comment.author }}</strong>: {{ comment.content }}</p>
+            <button mat-button color="accent" (click)="replyToComment(comment.id)">Reply</button>
+  
+            <!-- Render nested comments recursively -->
+            <ul *ngIf="comment.children?.length > 0">
+              <ng-container *ngFor="let child of comment.children">
+                <li>
+                  <p><strong>{{ child.author }}</strong>: {{ child.content }}</p>
+                  <button mat-button color="accent" (click)="replyToComment(child.id)">Reply</button>
+                </li>
+              </ng-container>
+            </ul>
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+    <ng-template #noComments>
+      <p>No comments yet.</p>
+    </ng-template>
+  
+    <h3>Add a Comment</h3>
+    <mat-form-field appearance="fill" class="comment-input">
+      <textarea
+        matInput
+        placeholder="Write a comment..."
+        [(ngModel)]="newCommentContent"
+      ></textarea>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="addComment()">Submit</button>
+    <p *ngIf="errorMsg" class="error">{{ errorMsg }}</p>
+
+
+    <div *ngIf="errorMsg" class="error-message">
+        {{ errorMsg }}
+    </div>
+</mat-card>

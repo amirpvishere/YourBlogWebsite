@@ -1,0 +1,14 @@
+<mat-toolbar color="primary">
+  <span>Your daily Blog --- {{ userName ? userName : '' }}</span>
+  <span class="spacer"></span>
+  <a mat-button routerLink="/" *ngIf="isLoggedIn()">Home</a>
+  <a mat-button routerLink="/dashboard" *ngIf="isLoggedIn()">Dashboard</a>
+  <a mat-button routerLink="/manage-users" *ngIf="isLoggedIn() && isAdmin()">Manage Users</a>
+  <a mat-button routerLink="/login" *ngIf="!isLoggedIn()">Login</a> 
+  <a mat-button routerLink="/register" *ngIf="!isLoggedIn()">Register</a>
+  <a mat-button (click)="onLogout()" *ngIf="isLoggedIn()">Logout</a>
+</mat-toolbar>
+
+<div class="router-container">
+  <router-outlet />
+</div>

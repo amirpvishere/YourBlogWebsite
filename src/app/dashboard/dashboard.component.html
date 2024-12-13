@@ -1,0 +1,59 @@
+<div class="dashboard-container">
+  <h1 class="dashboard-title">Dashboard</h1>
+
+
+  <!-- Search by Tag -->
+  <div class="search-container">
+    <input matInput type="text" placeholder="Search here by tags..." [(ngModel)]="searchTag" (inout)="filterPostsByTag()" />
+  </div>
+
+
+  <!-- Add & update Post --> 
+  <div class="add-post-container">
+    <input matInput type="text" placeholder="Create a title here..." [(ngModel)]="newPost.title" />
+    <input matInput type="text" placeholder="Create a description here..." [(ngModel)]="newPost.description" />
+    <input matInput type="text" placeholder="Create yor tags here..." [(ngModel)]="newPost.tags" />
+    <button 
+    mat-raised-button 
+    (click)="isEdited ? updatePost(currentPostId) : addPost()"
+    >
+      {{ isEdited ? 'Update Post' : 'Add Post' }}
+    </button>
+  </div>
+
+
+
+  <!-- Post List -->
+  <div class="post-list">
+    <div class="post-item" *ngFor="let post of paginatedPosts">
+      <div class="post-header">
+        <h3 class="post-title">{{ post.title }}</h3>
+        <p class="post-author">Author: {{ post.ownerEmail }}</p>
+        <div class="post-meta">
+          <p>Created at: {{ post.createdAt }}</p>
+          <p>Last Update: {{ post.updatedAt || '---' }}</p>
+        </div>
+      </div>
+      
+      <div class="post-content">
+        <p class="post-description">{{ post.description }}</p>
+        <p class="tags">Tags: {{ post.tags }}</p>
+      </div>
+      
+      <div class="post-actions">
+        <button mat-raised-button class="edit-button" (click)="editPost(post)" *ngIf="post.ownerEmail === userEmail || isAdmin()">Edit</button>
+        <button mat-raised-button class="delete-button" (click)="deletePost(post._id)" *ngIf="post.ownerEmail === userEmail || isAdmin()">Delete</button>
+        <button mat-raised-button class="show-more-button" pathTo="['/post', post.id]" (click)="showMore(post._id)">Show More</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Pagination Controls -->
+  <div class="pagination-controls">
+    <button mat-button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+    <button mat-button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+  </div>
+
+</div>
